@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapport post-live J5 — Sébastien Ascon</title>
+<style>
+  :root{
+    --blue:#2563eb; --blue-soft:#dbeafe; --blue-line:#3b82f6;
+    --ink:#0f172a; --muted:#64748b; --label:#94a3b8;
+    --line:#e2e8f0; --card:#f8fafc; --bg:#ffffff;
+    --green:#16a34a; --red:#dc2626; --grey:#cbd5e1;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    color:var(--ink);background:#eef1f5;line-height:1.5;padding:32px 16px;-webkit-font-smoothing:antialiased}
+  .page{max-width:920px;margin:0 auto 28px;background:var(--bg);border-radius:14px;
+    box-shadow:0 1px 3px rgba(15,23,42,.08),0 8px 24px rgba(15,23,42,.06);padding:38px 42px;border:1px solid var(--line)}
+  .head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:26px}
+  .head h1{font-size:20px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
+  .head .sub{color:var(--muted);font-size:13px;margin-top:3px}
+  .brand{font-size:12px;color:var(--blue);font-weight:600;background:var(--blue-soft);padding:5px 11px;border-radius:20px;white-space:nowrap}
+  h2{font-size:15px;font-weight:700;margin:26px 0 14px;letter-spacing:-.01em}
+  .section-first h2{margin-top:6px}
+  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 12px 14px}
+  .kpi .k-label{font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--label);font-weight:700}
+  .kpi .k-val{font-size:22px;font-weight:800;letter-spacing:-.03em;margin-top:7px}
+  .kpi .k-note{font-size:11px;color:var(--muted);margin-top:3px}
+  .up{color:var(--green);font-weight:700}.down{color:var(--red);font-weight:700}.flat{color:var(--muted);font-weight:700}
+  .chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+  .chart .cnote{font-size:11px;color:var(--muted);text-align:right;margin-top:6px}
+  .legend{display:flex;flex-wrap:nowrap;gap:20px;font-size:11px;color:var(--muted);margin:2px 0 12px}
+  .legend span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+  .sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+  svg{display:block;width:100%;height:auto;overflow:visible}
+  .axis{stroke:var(--line);stroke-width:1}
+  .grid{stroke:#eef2f7;stroke-width:1}
+  .alabel{fill:var(--label);font-size:10px}
+  .ylab{fill:var(--label);font-size:13px}
+  .xlab{fill:var(--muted);font-size:13px}
+  .barval{fill:#1e3a8a;font-size:15px;font-weight:700;text-anchor:middle}
+  .barvalg{fill:var(--label);font-size:15px;font-weight:700;text-anchor:middle}
+  .lead-hero{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:18px}
+  .hero{border:1px solid var(--line);border-radius:10px;padding:15px 16px;background:linear-gradient(180deg,#f8fafc,#fff)}
+  .hero.feat{border-color:#bfdbfe;background:linear-gradient(180deg,#eff6ff,#fff)}
+  .hero .h-label{font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--label);font-weight:700}
+  .hero .h-val{font-size:29px;font-weight:800;letter-spacing:-.03em;margin-top:6px;color:var(--blue)}
+  .hero .h-sub{font-size:11px;color:var(--muted);margin-top:2px}
+  .breakdown{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:4px}
+  .bd h3{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:11px}
+  .row{margin-bottom:9px}
+  .row .rt{display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:3px;gap:10px}
+  .row .rt .lbl{color:var(--ink)}
+  .row .rt .v{color:var(--muted);font-weight:600;white-space:nowrap}
+  .row .rt .v .d{font-weight:700;margin-left:5px}
+  .track{height:7px;background:#eef2f7;border-radius:4px;overflow:hidden}
+  .fill{height:100%;background:var(--blue-line);border-radius:4px}
+  .fill.soft{background:#93c5fd}
+  .note{font-size:11.5px;color:var(--muted);background:var(--card);border:1px solid var(--line);
+    border-left:3px solid var(--blue);border-radius:8px;padding:12px 14px;margin-top:6px}
+  .chat-intro{font-size:11.5px;color:var(--muted);background:var(--card);border:1px solid var(--line);border-left:3px solid var(--blue);border-radius:8px;padding:12px 14px;margin-bottom:16px}
+  .col2{display:grid;grid-template-columns:1fr;gap:24px}
+  .pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px}
+  .pill.neg{background:#fef2f2;color:var(--red)} .pill.pos{background:#f0fdf4;color:var(--green)}
+  .item{padding:9px 0;border-bottom:1px solid var(--line)} .item:last-child{border-bottom:none}
+  .item .i-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .item .i-title{font-size:12.5px;font-weight:700} .item .i-cnt{font-size:11px;color:var(--muted);font-weight:700;white-space:nowrap}
+  .item .i-desc{font-size:11px;color:var(--muted);margin:5px 0 7px}
+  .quote{font-size:11px;color:#475569;font-style:italic;padding-left:11px;border-left:2px solid var(--line);margin-top:4px}
+  .opnote{font-size:11.5px;color:#92400e;background:#fffbeb;border:1px solid #fde68a;border-left:3px solid #d97706;border-radius:8px;padding:11px 14px;margin-top:16px}
+  .foot{font-size:10.5px;color:var(--label);text-align:center;margin-top:26px;padding-top:16px;border-top:1px solid var(--line)}
+  @page{size:250mm 437mm;margin:0}
+  @media print{body{background:#fff;padding:0}.page{box-shadow:none;border:none;margin:0;border-radius:0;page-break-after:always;padding:30px 34px}.page:last-child{page-break-after:auto}}
+  @media (max-width:680px){.kpis{grid-template-columns:repeat(2,1fr)}.lead-hero{grid-template-columns:1fr}.breakdown{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 ============ -->
+<div class="page section-first">
+  <div class="head">
+    <div>
+      <h1>📊 Rapport post-live J5 — Sébastien Ascon</h1>
+      <div class="sub">Jeudi 4 juin 2026 · Challenge MRE « 2 biens rentables en 12 mois » · Jour 5/5</div>
+    </div>
+    <div class="brand">MRE · Immobilier</div>
+  </div>
+
+  <h2>Indicateurs clés</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="k-label">Inscrits challenge</div><div class="k-val">3 765</div></div>
+    <div class="kpi"><div class="k-label">Pic spectateurs</div><div class="k-val">318</div><div class="k-note">8,4 % des inscrits</div></div>
+    <div class="kpi"><div class="k-label">Rétention J5/J4</div><div class="k-val">83,7 %</div><div class="k-note">318 vs 380 (pic J4)</div></div>
+    <div class="kpi"><div class="k-label">RDV J5 soir</div><div class="k-val">37</div><div class="k-note"><span class="up">+27,6 %</span> vs édition préc. (29)</div></div>
+    <div class="kpi"><div class="k-label">Cumul final</div><div class="k-val">238</div><div class="k-note"><span class="up">+26,6 %</span> vs édition préc. (188)</div></div>
+    <div class="kpi"><div class="k-label">Messages chat</div><div class="k-val">2 776</div><div class="k-note">8,7 msg/spectateur · 1 214 réactions</div></div>
+  </div>
+
+  <h2>Courbe de rétention — spectateurs simultanés en live</h2>
+  <div class="chart">
+    <svg viewBox="0 0 820 300" role="img" aria-label="Courbe de rétention J5">
+      <g class="alabel" text-anchor="end">
+        <line class="grid" x1="48" y1="30"  x2="800" y2="30"/><text x="42" y="34">450</text>
+        <line class="grid" x1="48" y1="110" x2="800" y2="110"/><text x="42" y="114">300</text>
+        <line class="grid" x1="48" y1="190" x2="800" y2="190"/><text x="42" y="194">150</text>
+        <line class="axis" x1="48" y1="270" x2="800" y2="270"/><text x="42" y="274">0</text>
+      </g>
+      <polygon fill="url(#grad)" points="48.0,250.8 100.3,140.9 149.4,100.4 204.9,108.9 257.3,115.9 309.6,130.3 361.9,121.7 414.2,135.6 466.5,136.1 518.8,152.7 571.1,168.1 623.4,174.0 675.8,181.5 728.1,189.5 780.4,219.9 800.0,248.7 800.0,270 48,270"/>
+      <polyline fill="none" stroke="#3b82f6" stroke-width="2.4" stroke-linejoin="round" points="48.0,250.8 100.3,140.9 149.4,100.4 204.9,108.9 257.3,115.9 309.6,130.3 361.9,121.7 414.2,135.6 466.5,136.1 518.8,152.7 571.1,168.1 623.4,174.0 675.8,181.5 728.1,189.5 780.4,219.9 800.0,248.7"/>
+      <defs><linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.22"/>
+        <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.02"/></linearGradient></defs>
+      <circle cx="149.4" cy="100.4" r="3.6" fill="#2563eb"/>
+      <text x="157" y="93" font-size="10.5" font-weight="700" fill="#2563eb">pic 318</text>
+      <g class="alabel" text-anchor="middle">
+        <text x="48" y="286">20h</text><text x="146" y="286">20h30</text><text x="244" y="286">21h</text>
+        <text x="342" y="286">21h30</text><text x="440" y="286">22h</text><text x="538" y="286">22h30</text>
+        <text x="637" y="286">23h</text><text x="735" y="286">23h30</text>
+      </g>
+    </svg>
+    <div class="cnote">Durée du live : 3 h 50 (≈ 20 h 00 → 23 h 50) · ~224 spectateurs en moyenne · pic à 31 min · &minus;16 % d'audience vs J4 (380)</div>
+  </div>
+
+  <h2>Prises de RDV par tranche de 30 minutes</h2>
+  <div class="chart">
+    <div class="legend">
+      <span><i class="sw" style="background:#3b82f6"></i> J5 — 4 juin 2026</span>
+      <span><i class="sw" style="background:#cbd5e1"></i> J5 — 5 mars 2026 (édition préc.)</span>
+    </div>
+    <svg viewBox="0 0 1000 380" role="img" aria-label="RDV par tranche de 30 minutes J5">
+      <line class="axis" x1="64" y1="312.0" x2="972" y2="312.0"/>
+      <text class="ylab" text-anchor="end" x="56" y="316.0">0</text>
+      <line class="grid" x1="64" y1="244.0" x2="972" y2="244.0"/>
+      <text class="ylab" text-anchor="end" x="56" y="248.0">5</text>
+      <line class="grid" x1="64" y1="176.0" x2="972" y2="176.0"/>
+      <text class="ylab" text-anchor="end" x="56" y="180.0">10</text>
+      <line class="grid" x1="64" y1="108.0" x2="972" y2="108.0"/>
+      <text class="ylab" text-anchor="end" x="56" y="112.0">15</text>
+      <line class="grid" x1="64" y1="40.0" x2="972" y2="40.0"/>
+      <text class="ylab" text-anchor="end" x="56" y="44.0">20</text>
+      <rect x="91.8" y="298.4" width="26" height="13.6" rx="4" fill="#3b82f6"/>
+      <text class="barval" x="104.8" y="291.4">1</text>
+      <text class="xlab" text-anchor="middle" x="120.8" y="334">20h-20h30</text>
+      <rect x="205.2" y="216.8" width="26" height="95.2" rx="4" fill="#3b82f6"/>
+      <text class="barval" x="218.2" y="209.8">7</text>
+      <text class="xlab" text-anchor="middle" x="234.2" y="334">20h30-21h</text>
+      <rect x="318.8" y="189.6" width="26" height="122.4" rx="4" fill="#3b82f6"/>
+      <text class="barval" x="331.8" y="182.6">9</text>
+      <rect x="350.8" y="271.2" width="26" height="40.8" rx="4" fill="#cbd5e1"/>
+      <text class="barvalg" x="363.8" y="264.2">3</text>
+      <text class="xlab" text-anchor="middle" x="347.8" y="334">21h-21h30</text>
+      <rect x="432.2" y="230.4" width="26" height="81.6" rx="4" fill="#3b82f6"/>
+      <text class="barval" x="445.2" y="223.4">6</text>
+      <rect x="464.2" y="189.6" width="26" height="122.4" rx="4" fill="#cbd5e1"/>
+      <text class="barvalg" x="477.2" y="182.6">9</text>
+      <text class="xlab" text-anchor="middle" x="461.2" y="334">21h30-22h</text>
+      <rect x="545.8" y="203.2" width="26" height="108.8" rx="4" fill="#3b82f6"/>
+      <text class="barval" x="558.8" y="196.2">8</text>
+      <rect x="577.8" y="162.4" width="26" height="149.6" rx="4" fill="#cbd5e1"/>
+      <text class="barvalg" x="590.8" y="155.4">11</text>
+      <text class="xlab" text-anchor="middle" x="574.8" y="334">22h-22h30</text>
+      <rect x="659.2" y="271.2" width="26" height="40.8" rx="4" fill="#3b82f6"/>
+      <text class="barval" x="672.2" y="264.2">3</text>
+      <rect x="691.2" y="257.6" width="26" height="54.4" rx="4" fill="#cbd5e1"/>
+      <text class="barvalg" x="704.2" y="250.6">4</text>
+      <text class="xlab" text-anchor="middle" x="688.2" y="334">22h30-23h</text>
+      <rect x="804.8" y="284.8" width="26" height="27.2" rx="4" fill="#cbd5e1"/>
+      <text class="barvalg" x="817.8" y="277.8">2</text>
+      <text class="xlab" text-anchor="middle" x="801.8" y="334">23h-23h30</text>
+      <rect x="886.2" y="271.2" width="26" height="40.8" rx="4" fill="#3b82f6"/>
+      <text class="barval" x="899.2" y="264.2">3</text>
+      <text class="xlab" text-anchor="middle" x="915.2" y="334">23h30-00h</text>
+    </svg>
+    <div class="cnote">Nouveaux RDV (1ʳᵉ prise par personne, hors doublons &amp; tests) · 37 au total · prises étalées dès 20h30 (jour de clôture)</div>
+  </div>
+  <div class="foot">Rapport post-live J5 · Challenge MRE Sébastien Ascon · 4 juin 2026 — page 1/2</div>
+</div>
+
+<!-- ============ PAGE 2 ============ -->
+<div class="page section-first">
+  <h2>Qualité des leads · 238 RDV (cumul final)</h2>
+  <div class="lead-hero">
+    <div class="hero feat">
+      <div class="h-label">Ont déjà investi (locatif)</div>
+      <div class="h-val">39,9 %</div>
+      <div class="h-sub">95 RDV · <span class="down">&minus;6,4 pt</span> vs préc. · 72 % déjà propriétaires</div>
+    </div>
+    <div class="hero feat">
+      <div class="h-label">Épargne &gt; 10 000 €</div>
+      <div class="h-val">48,7 %</div>
+      <div class="h-sub">116 RDV · <span class="up">+3,5 pt</span> · dont 26,9 % au-dessus de 30 000 €</div>
+    </div>
+    <div class="hero">
+      <div class="h-label">Urgence — « le + rapidement possible »</div>
+      <div class="h-val">34,5 %</div>
+      <div class="h-sub">82 RDV · <span class="down">&minus;4,4 pt</span> · 67 % sous 6 mois</div>
+    </div>
+  </div>
+
+  <div class="breakdown">
+    <div class="bd">
+      <h3>Épargne disponible</h3>
+      <div class="row"><div class="rt"><span class="lbl">Plus de 60 000 €</span><span class="v">13,4 % <span class="d up">+0,1</span></span></div><div class="track"><div class="fill" style="width:13%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">30 000 € – 60 000 €</span><span class="v">13,4 % <span class="d up">+3,3</span></span></div><div class="track"><div class="fill" style="width:13%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">10 000 € – 30 000 €</span><span class="v">21,8 % <span class="d up">+0,0</span></span></div><div class="track"><div class="fill" style="width:22%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">5 000 € – 10 000 €</span><span class="v">16,0 % <span class="d up">+4,8</span></span></div><div class="track"><div class="fill soft" style="width:16%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">2 000 € – 5 000 €</span><span class="v">16,0 % <span class="d down">&minus;5,3</span></span></div><div class="track"><div class="fill soft" style="width:16%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">Quasiment pas d'épargne</span><span class="v">19,3 % <span class="d down">&minus;3,0</span></span></div><div class="track"><div class="fill soft" style="width:19%"></div></div></div>
+
+      <h3 style="margin-top:18px">Expérience immobilière</h3>
+      <div class="row"><div class="rt"><span class="lbl">Déjà investi en locatif</span><span class="v">39,9 % <span class="d down">&minus;6,4</span></span></div><div class="track"><div class="fill" style="width:40%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">Propriétaire de sa RP seulement</span><span class="v">31,9 % <span class="d up">+3,7</span></span></div><div class="track"><div class="fill soft" style="width:32%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">Pas encore propriétaire</span><span class="v">28,2 % <span class="d up">+2,6</span></span></div><div class="track"><div class="fill soft" style="width:28%"></div></div></div>
+    </div>
+
+    <div class="bd">
+      <h3>Situation professionnelle</h3>
+      <div class="row"><div class="rt"><span class="lbl">Salarié</span><span class="v">65,1 % <span class="d up">+8,2</span></span></div><div class="track"><div class="fill" style="width:65%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">Indépendant / chef d'entreprise</span><span class="v">13,4 % <span class="d down">&minus;8,9</span></span></div><div class="track"><div class="fill" style="width:13%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">En recherche d'emploi</span><span class="v">8,8 % <span class="d up">+3,5</span></span></div><div class="track"><div class="fill soft" style="width:9%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">En retraite</span><span class="v">12,6 % <span class="d up">+5,7</span></span></div><div class="track"><div class="fill soft" style="width:13%"></div></div></div>
+
+      <h3 style="margin-top:18px">Délai d'investissement souhaité</h3>
+      <div class="row"><div class="rt"><span class="lbl">Le plus rapidement possible</span><span class="v">34,5 % <span class="d down">&minus;4,4</span></span></div><div class="track"><div class="fill" style="width:34%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">Dans les 6 prochains mois</span><span class="v">32,8 % <span class="d down">&minus;1,3</span></span></div><div class="track"><div class="fill" style="width:33%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">D'ici 6 mois à 1 an</span><span class="v">26,9 % <span class="d up">+6,1</span></span></div><div class="track"><div class="fill soft" style="width:27%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">D'ici 1 à 3 ans</span><span class="v">5,9 % <span class="d down">&minus;0,5</span></span></div><div class="track"><div class="fill soft" style="width:6%"></div></div></div>
+
+      <h3 style="margin-top:18px">Revenus professionnels</h3>
+      <div class="row"><div class="rt"><span class="lbl">Plus de 6 000 €</span><span class="v">4,6 % <span class="d down">&minus;0,2</span></span></div><div class="track"><div class="fill" style="width:5%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">3 000 € – 6 000 €</span><span class="v">29,0 % <span class="d up">+4,0</span></span></div><div class="track"><div class="fill" style="width:29%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">1 500 € – 3 000 €</span><span class="v">51,7 % <span class="d down">&minus;2,0</span></span></div><div class="track"><div class="fill soft" style="width:52%"></div></div></div>
+      <div class="row"><div class="rt"><span class="lbl">Moins de 1 500 €</span><span class="v">14,7 % <span class="d down">&minus;1,8</span></span></div><div class="track"><div class="fill soft" style="width:15%"></div></div></div>
+    </div>
+  </div>
+
+  <h2>💬 Analyse du chat — freins &amp; questions bloquantes</h2>
+  <div class="chat-intro">
+    Analyse de <strong>2 356 messages</strong> exportables du chat live (sur 2 738 au total — 382 messages de modération / animation exclus).
+    J5 = <strong>jour de clôture</strong> : le chat est de loin le plus actif du challenge (8,7 msg/spectateur) et dominé par les <strong>signaux de décision</strong> — environ <strong>170 messages</strong> de type « présent depuis le J1 », remerciements et engagement. Les questions restantes ci-dessous sont surtout tactiques.
+  </div>
+
+  <div class="col2">
+    <div>
+      <span class="pill neg">⚠️ TOP 5 QUESTIONS &amp; FREINS RESTANTS</span>
+      <div class="item">
+        <div class="i-head"><span class="i-title">📑 Fiscalité &amp; mécanique de rentabilité</span><span class="i-cnt">79 msgs</span></div>
+        <div class="i-desc">Le trio cash-flow / amortissement / plus-value est repris en boucle, avec des questions fines sur la durée des amortissements.</div>
+        <div class="quote">« cash-flow, amortissement, plus-value ! »</div>
+        <div class="quote">« les amortissements ne durent pas toute la durée du crédit ? »</div>
+      </div>
+      <div class="item">
+        <div class="i-head"><span class="i-title">🤝 Offre &amp; inscription (programme, paiement)</span><span class="i-cnt">70 msgs</span></div>
+        <div class="i-desc">Adhésion à l'offre et problèmes pratiques d'inscription / confirmation de RDV à lever rapidement.</div>
+        <div class="quote">« oui, le programme nous plaît »</div>
+        <div class="quote">« je n'ai pas eu ma confirmation d'inscription ? »</div>
+      </div>
+      <div class="item">
+        <div class="i-head"><span class="i-title">💰 Financement / profils atypiques</span><span class="i-cnt">36 msgs</span></div>
+        <div class="i-desc">Cas particuliers : CDD, fonctionnaires, déductibilité des frais — peut-on emprunter dans ces situations ?</div>
+        <div class="quote">« une banque qui prête avec un CDD ? »</div>
+        <div class="quote">« les fonctionnaires ont un gros avantage sur l'emprunt »</div>
+      </div>
+      <div class="item">
+        <div class="i-head"><span class="i-title">😟 Doutes &amp; peurs</span><span class="i-cnt">19 msgs</span></div>
+        <div class="i-desc">Dernières hésitations, souvent désamorcées par la communauté elle-même.</div>
+        <div class="quote">« on a tous des peurs, on n'avance pas au même rythme »</div>
+        <div class="quote">« je doute que la banque me suive en CDD »</div>
+      </div>
+      <div class="item">
+        <div class="i-head"><span class="i-title">📍 Région parisienne / trouver &lt; 2 000 €/m²</span><span class="i-cnt">8 msgs</span></div>
+        <div class="i-desc">La frustration francilienne persiste jusqu'au dernier jour.</div>
+        <div class="quote">« encore possible de trouver à 2 000 €/m² en région parisienne ? »</div>
+        <div class="quote">« Montpellier ou Ardèche, est-ce rentable ? »</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">Rapport post-live J5 · Challenge MRE Sébastien Ascon · 4 juin 2026 — page 2/2</div>
+</div>
+
+<script src="/nav.js"></script>
+</body>
+</html>

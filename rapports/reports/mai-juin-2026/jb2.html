@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapport Live Bonus n°2 — Sébastien Ascon</title>
+<style>
+:root{--blue:#2563eb;--blue-soft:#dbeafe;--blue-line:#3b82f6;--ink:#0f172a;--muted:#64748b;--label:#94a3b8;--line:#e2e8f0;--card:#f8fafc;--bg:#ffffff;--green:#16a34a;--red:#dc2626;--grey:#cbd5e1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;color:var(--ink);background:#eef1f5;line-height:1.5;padding:32px 16px;-webkit-font-smoothing:antialiased}
+.page{max-width:920px;margin:0 auto 28px;background:var(--bg);border-radius:14px;box-shadow:0 1px 3px rgba(15,23,42,.08),0 8px 24px rgba(15,23,42,.06);padding:38px 42px;border:1px solid var(--line)}
+.head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:26px}
+.head h1{font-size:20px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
+.sub{font-size:13px;color:var(--muted);margin-top:3px}
+.brand{font-size:12px;color:var(--blue);font-weight:600;background:var(--blue-soft);padding:5px 11px;border-radius:20px;white-space:nowrap}
+h2{font-size:15px;font-weight:700;margin:26px 0 14px;letter-spacing:-.01em}
+.section-first h2{margin-top:6px}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 12px 14px}
+.kpi .k-label{font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--label);font-weight:700}
+.kpi .k-val{font-size:22px;font-weight:800;letter-spacing:-.03em;margin-top:7px}
+.kpi .k-note{font-size:11px;color:var(--muted);margin-top:3px}
+.up{color:var(--green);font-weight:700}.down{color:var(--red);font-weight:700}.flat{color:var(--muted);font-weight:700}
+.chart{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+.chart .cnote{font-size:11px;color:var(--muted);text-align:right;margin-top:6px}
+.legend{display:flex;flex-wrap:nowrap;gap:20px;font-size:11px;color:var(--muted);margin:2px 0 12px}
+.legend span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+svg{display:block;width:100%;height:auto;overflow:visible}
+.alabel{fill:var(--label);font-size:15px;font-weight:700}
+.ylab{fill:var(--label);font-size:13px}.xlab{fill:var(--muted);font-size:13px}
+.axis{stroke:var(--line);stroke-width:1}.grid{stroke:#eef2f7;stroke-width:1}
+.barval{fill:#1e3a8a;font-size:15px;font-weight:700;text-anchor:middle}
+.barvalg{fill:var(--label);font-size:15px;font-weight:700;text-anchor:middle}
+.lead-hero{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:18px}
+.hero{border:1px solid var(--line);border-radius:10px;padding:15px 16px;background:linear-gradient(#f8fafc,#fff)}
+.hero.feat{border-color:#bfdbfe;background:linear-gradient(#eff6ff,#fff)}
+.hero .h-label{font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--label);font-weight:700}
+.hero .h-val{font-size:29px;font-weight:800;letter-spacing:-.03em;margin-top:6px;color:var(--blue)}
+.hero .h-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.breakdown{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:4px}
+.bd h3{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:11px}
+.bd h3:not(:first-child){margin-top:20px}
+.row{margin-bottom:9px}
+.row .rt{display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:3px;gap:10px}
+.row .rt .lbl{color:var(--ink)}
+.row .rt .v{color:var(--muted);font-weight:600;white-space:nowrap}
+.row .rt .v .d{font-weight:700;margin-left:5px}
+.track{height:7px;background:#eef2f7;border-radius:4px;overflow:hidden}
+.fill{height:100%;background:var(--blue-line);border-radius:4px}
+.fill.soft{background:#93c5fd}
+.foot{font-size:10.5px;color:var(--label);text-align:center;margin-top:26px;padding-top:16px;border-top:1px solid var(--line)}
+@page{size:250mm 437mm;margin:0}
+@media print{body{background:#fff;padding:0}.page{box-shadow:none;border:none;margin:0;border-radius:0;break-after:page;padding:30px 34px}.page:last-child{break-after:auto}}
+@media (max-width:680px){.kpis{grid-template-columns:repeat(2,1fr)}.lead-hero{grid-template-columns:1fr}.breakdown{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="page section-first">
+  <div class="head">
+    <div>
+      <h1>📊 Rapport Live Bonus n°2 — Sébastien Ascon</h1>
+      <div class="sub">Challenge MRE « 2 biens rentables en 12 mois » · Live bonus n°2 · mardi 9 juin 2026</div>
+    </div>
+    <div class="brand">MRE · Immobilier</div>
+  </div>
+  <h2>Indicateurs clés</h2>
+  <div class="kpis"><div class="kpi"><div class="k-label">Pic spectateurs</div><div class="k-val">193</div><div class="k-note">5,1 % des 3 765 inscrits</div></div><div class="kpi"><div class="k-label">Rétention vs bonus 1</div><div class="k-val">71,7 %</div><div class="k-note">193 vs 269 (pic bonus 1)</div></div><div class="kpi"><div class="k-label">RDV pendant le live</div><div class="k-val">6</div><div class="k-note">mar 9 juin · vs 6 préc. (=)</div></div><div class="kpi"><div class="k-label">RDV post-challenge</div><div class="k-val">56</div><div class="k-note">+9,8 % vs préc. (51) · sur 5 jours</div></div><div class="kpi"><div class="k-label">Cumul total</div><div class="k-val">294</div><div class="k-note">+23,0 % vs édition préc. (239)</div></div><div class="kpi"><div class="k-label">Messages chat</div><div class="k-val">1 124</div><div class="k-note">5,8 msg/spectateur · 178 réactions</div></div></div>
+  <h2>Courbe de rétention — spectateurs simultanés en live</h2>
+  <div class="chart"><svg viewBox="0 0 820 300" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.22"/>
+    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.02"/></linearGradient></defs>
+  <g class="alabel"><text x="42" y="38" text-anchor="end">300</text><text x="42" y="118" text-anchor="end">200</text><text x="42" y="198" text-anchor="end">100</text><text x="42" y="278" text-anchor="end">0</text></g>
+  <polygon points="48.0,234.0 76.9,191.6 105.8,164.4 134.8,156.4 163.7,138.8 192.6,133.2 221.5,135.6 250.5,132.4 279.4,127.6 308.3,125.2 337.2,128.4 366.2,142.8 395.1,130.0 424.0,133.2 452.9,134.8 481.8,125.2 510.8,119.6 539.7,126.8 568.6,151.6 597.5,171.6 626.5,174.0 655.4,180.4 684.3,190.8 713.2,194.8 742.2,198.0 771.1,216.4 800.0,254.8 800.0,274 48.0,274" fill="url(#grad)"/>
+  <polyline points="48.0,234.0 76.9,191.6 105.8,164.4 134.8,156.4 163.7,138.8 192.6,133.2 221.5,135.6 250.5,132.4 279.4,127.6 308.3,125.2 337.2,128.4 366.2,142.8 395.1,130.0 424.0,133.2 452.9,134.8 481.8,125.2 510.8,119.6 539.7,126.8 568.6,151.6 597.5,171.6 626.5,174.0 655.4,180.4 684.3,190.8 713.2,194.8 742.2,198.0 771.1,216.4 800.0,254.8" fill="none" stroke="#3b82f6" stroke-width="2.4"/>
+  <circle cx="510.8" cy="119.6" r="3.6" fill="#2563eb"/>
+  <text x="510.8" y="107.6" text-anchor="middle" style="fill:#2563eb;font-size:13px;font-weight:700">pic 193</text>
+  <g class="alabel"><text x="48.0" y="286" text-anchor="middle">20h</text><text x="192.6" y="286" text-anchor="middle">20h30</text><text x="337.2" y="286" text-anchor="middle">21h</text><text x="481.8" y="286" text-anchor="middle">21h30</text><text x="626.5" y="286" text-anchor="middle">22h</text><text x="771.1" y="286" text-anchor="middle">22h30</text></g>
+</svg><div class="cnote">Durée du live : 2 h 36 (≈ 20 h 00 → 22 h 36) · ~147 spectateurs en moyenne · pic à 96 min · −28 % de pic vs bonus 1 (269)</div></div>
+  <h2>Nouveaux RDV par jour (effet post-challenge)</h2>
+  <div class="chart">
+    <div class="legend"><span><i class="sw" style="background:#3b82f6"></i>Bonus — juin 2026</span><span><i class="sw" style="background:#cbd5e1"></i>Bonus — mars 2026 (édition préc.)</span></div>
+    <svg viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg">
+  <line class="axis" x1="64" y1="312" x2="972" y2="312"/>
+  <line class="grid" x1="64" y1="244" x2="972" y2="244"/><line class="grid" x1="64" y1="176" x2="972" y2="176"/><line class="grid" x1="64" y1="108" x2="972" y2="108"/><line class="grid" x1="64" y1="40" x2="972" y2="40"/>
+  <text class="ylab" x="56" y="316" text-anchor="end">0</text><text class="ylab" x="56" y="248" text-anchor="end">5</text><text class="ylab" x="56" y="180" text-anchor="end">10</text><text class="ylab" x="56" y="112" text-anchor="end">15</text><text class="ylab" x="56" y="44" text-anchor="end">20</text>
+  <rect x="109.8" y="148.8" width="40" height="163.2" fill="#3b82f6" rx="4"/><rect x="159.8" y="203.2" width="40" height="108.8" fill="#cbd5e1" rx="4"/><rect x="291.4" y="80.8" width="40" height="231.2" fill="#3b82f6" rx="4"/><rect x="341.4" y="135.2" width="40" height="176.8" fill="#cbd5e1" rx="4"/><rect x="473.0" y="230.4" width="40" height="81.6" fill="#3b82f6" rx="4"/><rect x="523.0" y="284.8" width="40" height="27.2" fill="#cbd5e1" rx="4"/><rect x="654.6" y="148.8" width="40" height="163.2" fill="#3b82f6" rx="4"/><rect x="704.6" y="121.6" width="40" height="190.4" fill="#cbd5e1" rx="4"/><rect x="836.2" y="189.6" width="40" height="122.4" fill="#3b82f6" rx="4"/><rect x="886.2" y="121.6" width="40" height="190.4" fill="#cbd5e1" rx="4"/>
+  <text class="barval" x="129.8" y="141.8">12</text><text class="barvalg" x="179.8" y="196.2">8</text><text class="barval" x="311.4" y="73.8">17</text><text class="barvalg" x="361.4" y="128.2">13</text><text class="barval" x="493.0" y="223.4">6</text><text class="barvalg" x="543.0" y="277.8">2</text><text class="barval" x="674.6" y="141.8">12</text><text class="barvalg" x="724.6" y="114.6">14</text><text class="barval" x="856.2" y="182.6">9</text><text class="barvalg" x="906.2" y="114.6">14</text>
+  <text class="xlab" x="154.8" y="332" text-anchor="middle">J+1 (ven)</text><text class="xlab" x="336.4" y="332" text-anchor="middle">J+2 (sam)</text><text class="xlab" x="518.0" y="332" text-anchor="middle">J+3 (dim)</text><text class="xlab" x="699.6" y="332" text-anchor="middle">J+4 (lun)</text><text class="xlab" x="881.2" y="332" text-anchor="middle">J+5 (mar)</text>
+</svg><div class="cnote">Nouveaux RDV (1ʳᵉ prise par personne, hors doublons &amp; tests) · 56 au total sur 5 jours · dont 6 seulement pris pendant le live du 9 juin (20h–23h), les 50 autres en amont — effet replay / relances (vs 6 pendant le live et 51 au total en mars)</div>
+  </div>
+  <div class="foot">Rapport Live Bonus n°2 · Challenge MRE Sébastien Ascon · 9 juin 2026 — page 1/2</div>
+</div>
+<div class="page section-first">
+  <h2>Qualité des leads · 294 RDV (cumul total)</h2>
+  <div class="lead-hero"><div class="hero feat"><div class="h-label">Ont déjà investi (locatif)</div><div class="h-val">41,2 %</div><div class="h-sub">121 RDV · <span class="down">−5,7 pt</span> vs préc. · 73 % déjà propriétaires</div></div><div class="hero feat"><div class="h-label">Épargne &gt; 10 000 €</div><div class="h-val">50,7 %</div><div class="h-sub">149 RDV · <span class="up">+3,8 pt</span> · dont 28,6 % au-dessus de 30 000 €</div></div><div class="hero"><div class="h-label">Urgence — « le + rapidement possible »</div><div class="h-val">38,1 %</div><div class="h-sub">112 RDV · <span class="down">−1,7 pt</span> · 71 % sous 6 mois</div></div></div>
+  <div class="breakdown"><div class="bd"><h3>Épargne disponible</h3><div class="row"><div class="rt"><span class="lbl">Plus de 60 000 €</span><span class="v">16,0 %<span class="d up">+3,4</span></span></div><div class="track"><div class="fill" style="width:16%"></div></div></div><div class="row"><div class="rt"><span class="lbl">30 000 € – 60 000 €</span><span class="v">12,6 %<span class="d up">+0,9</span></span></div><div class="track"><div class="fill" style="width:13%"></div></div></div><div class="row"><div class="rt"><span class="lbl">10 000 € – 30 000 €</span><span class="v">22,1 %<span class="d down">−0,5</span></span></div><div class="track"><div class="fill" style="width:22%"></div></div></div><div class="row"><div class="rt"><span class="lbl">5 000 € – 10 000 €</span><span class="v">14,6 %<span class="d up">+3,3</span></span></div><div class="track"><div class="fill soft" style="width:15%"></div></div></div><div class="row"><div class="rt"><span class="lbl">2 000 € – 5 000 €</span><span class="v">15,6 %<span class="d down">−4,4</span></span></div><div class="track"><div class="fill soft" style="width:16%"></div></div></div><div class="row"><div class="rt"><span class="lbl">Quasiment pas d'épargne</span><span class="v">19,0 %<span class="d down">−2,7</span></span></div><div class="track"><div class="fill soft" style="width:19%"></div></div></div><h3>Expérience immobilière</h3><div class="row"><div class="rt"><span class="lbl">Déjà investi en locatif</span><span class="v">41,2 %<span class="d down">−5,7</span></span></div><div class="track"><div class="fill" style="width:41%"></div></div></div><div class="row"><div class="rt"><span class="lbl">Propriétaire de sa RP seulement</span><span class="v">31,6 %<span class="d up">+2,8</span></span></div><div class="track"><div class="fill soft" style="width:32%"></div></div></div><div class="row"><div class="rt"><span class="lbl">Pas encore propriétaire</span><span class="v">27,2 %<span class="d up">+2,9</span></span></div><div class="track"><div class="fill soft" style="width:27%"></div></div></div></div><div class="bd"><h3>Situation professionnelle</h3><div class="row"><div class="rt"><span class="lbl">Salarié</span><span class="v">60,9 %<span class="d up">+5,2</span></span></div><div class="track"><div class="fill" style="width:61%"></div></div></div><div class="row"><div class="rt"><span class="lbl">Indépendant / chef d'entreprise</span><span class="v">15,6 %<span class="d down">−8,2</span></span></div><div class="track"><div class="fill" style="width:16%"></div></div></div><div class="row"><div class="rt"><span class="lbl">En recherche d'emploi</span><span class="v">8,8 %<span class="d up">+3,8</span></span></div><div class="track"><div class="fill soft" style="width:9%"></div></div></div><div class="row"><div class="rt"><span class="lbl">En retraite</span><span class="v">14,6 %<span class="d up">+8,3</span></span></div><div class="track"><div class="fill soft" style="width:15%"></div></div></div><h3>Délai d'investissement souhaité</h3><div class="row"><div class="rt"><span class="lbl">Le plus rapidement possible</span><span class="v">38,1 %<span class="d down">−1,7</span></span></div><div class="track"><div class="fill" style="width:38%"></div></div></div><div class="row"><div class="rt"><span class="lbl">Dans les 6 prochains mois</span><span class="v">33,3 %<span class="d down">−2,2</span></span></div><div class="track"><div class="fill" style="width:33%"></div></div></div><div class="row"><div class="rt"><span class="lbl">D'ici 6 mois à 1 an</span><span class="v">23,1 %<span class="d up">+4,7</span></span></div><div class="track"><div class="fill soft" style="width:23%"></div></div></div><div class="row"><div class="rt"><span class="lbl">D'ici 1 à 3 ans</span><span class="v">5,4 %<span class="d down">−0,8</span></span></div><div class="track"><div class="fill soft" style="width:5%"></div></div></div><h3>Revenus professionnels</h3><div class="row"><div class="rt"><span class="lbl">Plus de 6 000 €</span><span class="v">5,1 %<span class="d up">+0,9</span></span></div><div class="track"><div class="fill" style="width:5%"></div></div></div><div class="row"><div class="rt"><span class="lbl">3 000 € – 6 000 €</span><span class="v">28,2 %<span class="d up">+2,7</span></span></div><div class="track"><div class="fill" style="width:28%"></div></div></div><div class="row"><div class="rt"><span class="lbl">1 500 € – 3 000 €</span><span class="v">51,0 %<span class="d down">−3,4</span></span></div><div class="track"><div class="fill soft" style="width:51%"></div></div></div><div class="row"><div class="rt"><span class="lbl">Moins de 1 500 €</span><span class="v">15,6 %<span class="d down">−0,3</span></span></div><div class="track"><div class="fill soft" style="width:16%"></div></div></div></div></div>
+  <div class="foot">Rapport Live Bonus n°2 · Challenge MRE Sébastien Ascon · 9 juin 2026 — page 2/2</div>
+</div>
+<script src="/nav.js"></script>
+</body>
+</html>

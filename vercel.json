@@ -18,5 +18,32 @@
       "path": "/api/snapshot",
       "schedule": "0 22 * * *"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/acquisition",
+      "destination": "/acquisition/",
+      "permanent": false
+    },
+    {
+      "source": "/rapports",
+      "destination": "/rapports/",
+      "permanent": false
+    },
+    {
+      "source": "/challenge.html",
+      "destination": "/acquisition/challenge.html",
+      "permanent": false
+    },
+    {
+      "source": "/bilans",
+      "destination": "/bilans/mre5/",
+      "permanent": false
+    },
+    {
+      "source": "/bilans/",
+      "destination": "/bilans/mre5/",
+      "permanent": false
+    }
   ]
 }

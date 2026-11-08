@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rapports post-live — Sébastien Ascon</title>
+<style>
+  :root{
+    --blue:#2563eb; --ink:#0f172a; --muted:#64748b; --label:#94a3b8;
+    --line:#e5e7eb; --bg:#f7f8fa; --card:#ffffff;
+    --green:#16a34a; --green-bg:#dcfce7;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+
+  /* En-tête */
+  header{background:#fff;border-bottom:1px solid var(--line);padding:26px 0}
+  .container{max-width:1180px;margin:0 auto;padding:0 32px}
+  header h1{font-size:24px;font-weight:800;letter-spacing:-.02em;display:flex;align-items:center;gap:11px}
+  header .sub{color:var(--muted);font-size:15px;margin-top:5px}
+
+  /* Section */
+  main{padding:40px 0 60px}
+  .section-head{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:26px}
+  .section-head .left{display:flex;align-items:center;gap:14px}
+  .section-head h2{font-size:24px;font-weight:800;letter-spacing:-.02em}
+  .status{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green);background:var(--green-bg);padding:5px 12px;border-radius:20px}
+  .status.done{color:var(--muted);background:#eef2f7}
+  .card.bonus{border-color:#bfdbfe;background:linear-gradient(180deg,#f5f9ff,#fff)}
+  .section-head .right{color:var(--muted);font-size:15px;white-space:nowrap}
+
+  /* Grille de cartes */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;
+    min-height:320px;display:flex;flex-direction:column;text-decoration:none;color:inherit}
+  a.card{transition:transform .12s ease,box-shadow .12s ease}
+  a.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(15,23,42,.10);border-color:#bfdbfe}
+  .card .c-top{display:flex;justify-content:space-between;align-items:baseline}
+  .card .c-day{font-size:32px;font-weight:800;letter-spacing:-.03em}
+  .card .c-date{font-size:15px;color:var(--muted);font-weight:500}
+  .metrics{margin-top:auto;border-top:1px solid var(--line);padding-top:16px}
+  .metric{display:flex;justify-content:space-between;align-items:baseline;padding:7px 0}
+  .metric .m-label{font-size:15px;color:var(--muted)}
+  .metric .m-val{font-size:18px;font-weight:800;letter-spacing:-.02em}
+  /* Cartes à venir */
+  .card.soon .c-day,.card.soon .c-date{color:var(--label)}
+  .soon-note{margin-top:auto;border-top:1px solid var(--line);padding-top:16px;font-size:15px;font-style:italic;color:var(--label)}
+
+  @media (max-width:1080px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:560px){.grid{grid-template-columns:1fr}.section-head{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>📊 Rapports post-live</h1>
+      <div class="sub">Sébastien Ascon · Challenge MRE — Immobilier</div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="section-head">
+        <div class="left">
+          <h2>Challenge Mai 2026</h2>
+          <span class="status done">Terminé</span>
+        </div>
+        <div class="right">5 lives + 2 bonus · 31 mai → 9 juin 2026</div>
+      </div>
+
+      <div class="grid">
+        <!-- J1 -->
+        <a class="card" href="j1.html">
+          <div class="c-top"><span class="c-day">J1</span><span class="c-date">Dim 31 mai</span></div>
+          <div class="metrics">
+            <div class="metric"><span class="m-label">Pic spectateurs</span><span class="m-val">629</span></div>
+            <div class="metric"><span class="m-label">RDV J1 soir</span><span class="m-val">88</span></div>
+          </div>
+        </a>
+
+        <!-- J2 -->
+        <a class="card" href="j2.html">
+          <div class="c-top"><span class="c-day">J2</span><span class="c-date">Lun 1ᵉʳ juin</span></div>
+          <div class="metrics">
+            <div class="metric"><span class="m-label">Pic spectateurs</span><span class="m-val">506</span></div>
+            <div class="metric"><span class="m-label">RDV J2 soir</span><span class="m-val">18</span></div>
+            <div class="metric"><span class="m-label">RDV J2 journée</span><span class="m-val">13</span></div>
+            <div class="metric"><span class="m-label">Cumul</span><span class="m-val">119</span></div>
+          </div>
+        </a>
+
+        <!-- J3 -->
+        <a class="card" href="j3.html">
+          <div class="c-top"><span class="c-day">J3</span><span class="c-date">Mar 2 juin</span></div>
+          <div class="metrics">
+            <div class="metric"><span class="m-label">Pic spectateurs</span><span class="m-val">386</span></div>
+            <div class="metric"><span class="m-label">RDV J3 soir</span><span class="m-val">38</span></div>
+            <div class="metric"><span class="m-label">RDV J3 journée</span><span class="m-val">5</span></div>
+            <div class="metric"><span class="m-label">Cumul</span><span class="m-val">162</span></div>
+          </div>
+        </a>
+
+        <!-- J4 -->
+        <a class="card" href="j4.html">
+          <div class="c-top"><span class="c-day">J4</span><span class="c-date">Mer 3 juin</span></div>
+          <div class="metrics">
+            <div class="metric"><span class="m-label">Pic spectateurs</span><span class="m-val">380</span></div>
+            <div class="metric"><span class="m-label">RDV J4 soir</span><span class="m-val">25</span></div>
+            <div class="metric"><span class="m-label">RDV J4 journée</span><span class="m-val">8</span></div>
+            <div class="metric"><span class="m-label">Cumul</span><span class="m-val">195</span></div>
+          </div>
+        </a>
+
+        <!-- J5 -->
+        <a class="card" href="j5.html">
+          <div class="c-top"><span class="c-day">J5</span><span class="c-date">Jeu 4 juin</span></div>
+          <div class="metrics">
+            <div class="metric"><span class="m-label">Pic spectateurs</span><span class="m-val">318</span></div>
+            <div class="metric"><span class="m-label">RDV J5 soir</span><span class="m-val">37</span></div>
+            <div class="metric"><span class="m-label">RDV J5 journée</span><span class="m-val">6</span></div>
+            <div class="metric"><span class="m-label">Cumul final</span><span class="m-val">238</span></div>
+          </div>
+        </a>
+
+        <!-- Bonus 1 -->
+        <a class="card bonus" href="jb.html">
+          <div class="c-top"><span class="c-day" style="font-size:1.5rem">Bonus 1</span><span class="c-date">Lun 8 juin</span></div>
+          <div class="metrics">
+            <div class="metric"><span class="m-label">Pic spectateurs</span><span class="m-val">269</span></div>
+            <div class="metric"><span class="m-label">RDV pendant le live</span><span class="m-val">7</span></div>
+            <div class="metric"><span class="m-label">RDV post-challenge</span><span class="m-val">40</span></div>
+            <div class="metric"><span class="m-label">Cumul total</span><span class="m-val">285</span></div>
+          </div>
+        </a>
+
+        <!-- Bonus 2 -->
+        <a class="card bonus" href="jb2.html">
+          <div class="c-top"><span class="c-day" style="font-size:1.5rem">Bonus 2</span><span class="c-date">Mar 9 juin</span></div>
+          <div class="metrics">
+            <div class="metric"><span class="m-label">Pic spectateurs</span><span class="m-val">193</span></div>
+            <div class="metric"><span class="m-label">RDV pendant le live</span><span class="m-val">6</span></div>
+            <div class="metric"><span class="m-label">RDV post-challenge</span><span class="m-val">50</span></div>
+            <div class="metric"><span class="m-label">Cumul total</span><span class="m-val">294</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+<script src="/nav.js"></script>
+</body>
+</html>

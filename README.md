@@ -12,3 +12,9 @@
 Un bloc dans `lib/challenges.js` (liste AWeber, préfixe des broadcasts, dates), puis push.
 Nouveau tag affilié ou sous-source : l'ajouter dans `lib/channels.js`.
 En fin de challenge : `status: "done"`, push, puis « Figer les données ».
+
+## Hub unique (depuis nov. 2026)
+Ce projet regroupe tous les dashboards de Sébastien derrière un seul lien :
+- `/` : accueil · `/acquisition/` : dashboard acquisition · `/rapports/` : rapports post-live (ex-repo `mre-rapports`) · `/bilans/<edition>/` : bilans d'édition.
+- Barre de navigation commune : `nav.js`, à inclure en bas de chaque page (`<script src="/nav.js"></script>`).
+- Nouveau bilan : `bilans/<edition>/index.html` + lien dans `nav.js` / `index.html`.
