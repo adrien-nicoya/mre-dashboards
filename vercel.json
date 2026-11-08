@@ -21,6 +21,28 @@
   ],
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "nicoya-mre-reports.vercel.app"
+        }
+      ],
+      "destination": "https://mre-acquisition.vercel.app/rapports/",
+      "permanent": false
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "nicoya-mre-reports.vercel.app"
+        }
+      ],
+      "destination": "https://mre-acquisition.vercel.app/rapports/:path*",
+      "permanent": false
+    },
+    {
       "source": "/acquisition",
       "destination": "/acquisition/",
       "permanent": false
